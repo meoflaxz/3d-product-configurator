@@ -4,22 +4,10 @@ import {
     Stage,
 } from "@react-three/drei";
 
-import { useLoader } from "@react-three/fiber";
-import { useRef, useEffect, Suspense } from "react";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import * as THREE from "three";
-
+import { Suspense } from "react";
+import Chair from "./Chair";
 const Experience = () => {
-    const gltf = useLoader(GLTFLoader, "./models/chair.gltf");
-    const modelRef = useRef();
 
-    useEffect(() => {
-        if (modelRef.current) {
-            const box = new THREE.Box3().setFromObject(modelRef.current);
-            const yOffset = box.min.y; // push the bottom to y = 0
-            modelRef.current.position.y -= yOffset;
-        }
-    }, [gltf]);
 
     return (
         <PresentationControls
@@ -35,11 +23,11 @@ const Experience = () => {
                 adjustCamera={false}
             >
                 <Suspense fallback={null}>
-                    <primitive object={gltf.scene} ref={modelRef} />
+                    <Chair />
                 </Suspense>
             </Stage>
 
-            <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
+            <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.5, 0]}>
                 <planeGeometry args={[170, 170]} />
                 <MeshReflectorMaterial
                     blur={[300, 300]}
