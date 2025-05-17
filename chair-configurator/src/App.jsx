@@ -1,10 +1,15 @@
-import reactLogo from './assets/react.svg'
+import { Canvas } from "@react-three/fiber"
 import './App.css'
-
+import Experience from './components/Experience';
 function App() {
 
   return (
-      <div className="App">hello world
+      <div className="App">
+        <Canvas>
+          <color attach="background" args={["#000000"]} />
+          <fog attach="fog" args={["#000000", 10, 20]} />
+          <Experience />
+        </Canvas>
     </div>
   )
 }
