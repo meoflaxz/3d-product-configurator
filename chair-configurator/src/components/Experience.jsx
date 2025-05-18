@@ -5,9 +5,8 @@ import {
 } from "@react-three/drei";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-
-
 import Chair from "./Chair";
+
 const Experience = () => {
     const chairRef = useRef();
 

@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { use } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
+
+import { useCustomization } from '../contexts/Customization'
 const Chair = (props) => {
+
+  const { material, legs } = useCustomization();
+
   const { nodes, materials } = useGLTF('./models/chair.gltf')
 
   const leatherTextureProps = useTexture({
@@ -49,7 +54,7 @@ const Chair = (props) => {
     <group {...props} dispose={null}>
       
       <mesh geometry={nodes.Chair.geometry}>
-          <meshStandardMaterial {...leatherTextureProps}/>
+          <meshStandardMaterial {...material === "leather" ? leatherTextureProps : fabricTextureProps}/>
             </mesh>
 
       <mesh geometry={nodes.Cushion.geometry}>
@@ -58,11 +63,12 @@ const Chair = (props) => {
       </mesh>
 
       <mesh geometry={nodes.Legs1.geometry}
-        material={materials.Legs} />
+        material={materials.Legs}
+        visible={legs === 1}/>
 
       <mesh geometry={nodes.Legs2.geometry}
         material={materials.Legs}
-        visible={false} />
+        visible={legs === 2} />
     </group>
   )
 }
