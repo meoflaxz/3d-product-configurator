@@ -3,11 +3,19 @@ import {
     PresentationControls,
     Stage,
 } from "@react-three/drei";
+import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 
-import { Suspense } from "react";
+
 import Chair from "./Chair";
 const Experience = () => {
+    const chairRef = useRef();
 
+    useFrame(() => {
+        if (chairRef.current) {
+            chairRef.current.rotation.y += 0.005; // Rotate the chair
+        }
+    });
 
     return (
         <PresentationControls
@@ -22,7 +30,9 @@ const Experience = () => {
                 contactShadow={false}
                 adjustCamera={false}
             >
+                <group ref={chairRef}>
                     <Chair />
+                </group>
             </Stage>
 
             <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.5, 0]}>
