@@ -22,9 +22,7 @@ const Experience = () => {
                 contactShadow={false}
                 adjustCamera={false}
             >
-                <Suspense fallback={null}>
                     <Chair />
-                </Suspense>
             </Stage>
 
             <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.5, 0]}>
