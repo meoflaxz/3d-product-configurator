@@ -1,4 +1,3 @@
-import React, { use } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
